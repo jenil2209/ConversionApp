@@ -12,6 +12,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     val units = arrayOf("km", "mi", "m", "ft", "yd", "cm", "mm")
     var answer = 0.0
+    var answerArray = mutableListOf<Double>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +27,10 @@ class MainActivity : AppCompatActivity() {
             if (binding.etAmount.text.isEmpty()) {
                 binding.etAmount.error = "Please enter amount"
             } else {
-                val result = answer * binding.etAmount.text.toString().toDouble()
+                println(binding.spDest.selectedItemPosition)
+                val result =
+                    answerArray[binding.spDest.selectedItemPosition] * binding.etAmount.text.toString()
+                        .toDouble()
                 binding.tvAnswer.text = result.toString()
             }
         }
@@ -39,37 +43,79 @@ class MainActivity : AppCompatActivity() {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 when (p2) {
                     0 -> {
-                        val answerArray =
-                            arrayOf(1.0, 0.621371, 1000.0, 3280.84, 1093.61, 100000.0, 1000000.0)
-                        setDestinationSpinner(answerArray)
+                        answerArray =
+                            arrayOf(
+                                1.0,
+                                0.621371,
+                                1000.0,
+                                3280.84,
+                                1093.61,
+                                100000.0,
+                                1000000.0
+                            ).toMutableList()
                     }
                     1 -> {
-                        val answerArray =
-                            arrayOf(1.60934, 1.0, 1609.34, 5280.0, 1760.0, 160934.0, 1609344.0)
-                        setDestinationSpinner(answerArray)
+                        answerArray =
+                            arrayOf(
+                                1.60934,
+                                1.0,
+                                1609.34,
+                                5280.0,
+                                1760.0,
+                                160934.0,
+                                1609344.0
+                            ).toMutableList()
                     }
                     2 -> {
-                        val answerArray =
-                            arrayOf(0.001, 0.000621371, 1.0, 3.28084, 1.09361, 100.0, 1000.0)
-                        setDestinationSpinner(answerArray)
+                        answerArray =
+                            arrayOf(
+                                0.001,
+                                0.000621371,
+                                1.0,
+                                3.28084,
+                                1.09361,
+                                100.0,
+                                1000.0
+                            ).toMutableList()
                     }
                     3 -> {
-                        val answerArray =
-                            arrayOf(0.0003048, 0.000189394, 0.3048, 1.0, 0.33333, 30.48, 304.8)
-                        setDestinationSpinner(answerArray)
+                        answerArray =
+                            arrayOf(
+                                0.0003048,
+                                0.000189394,
+                                0.3048,
+                                1.0,
+                                0.33333,
+                                30.48,
+                                304.8
+                            ).toMutableList()
                     }
                     4 -> {
-                        val answerArray =
-                            arrayOf(0.0009144, 0.000568182, 0.9144, 3.0, 1.0, 91.44, 914.4)
-                        setDestinationSpinner(answerArray)
+                        answerArray =
+                            arrayOf(
+                                0.0009144,
+                                0.000568182,
+                                0.9144,
+                                3.0,
+                                1.0,
+                                91.44,
+                                914.4
+                            ).toMutableList()
                     }
                     5 -> {
-                        val answerArray =
-                            arrayOf(0.00001, 0.0000062137, 0.01, 0.010936133, 0.0328, 1.0, 10.0)
-                        setDestinationSpinner(answerArray)
+                        answerArray =
+                            arrayOf(
+                                0.00001,
+                                0.0000062137,
+                                0.01,
+                                0.010936133,
+                                0.0328,
+                                1.0,
+                                10.0
+                            ).toMutableList()
                     }
                     6 -> {
-                        val answerArray =
+                        answerArray =
                             arrayOf(
                                 1.0 / 1000000.0,
                                 1.0 / 1609344.0,
@@ -78,22 +124,9 @@ class MainActivity : AppCompatActivity() {
                                 1.0 / 305.0,
                                 1.0 / 10.0,
                                 1.0
-                            )
-                        setDestinationSpinner(answerArray)
+                            ).toMutableList()
                     }
                 }
-            }
-        }
-    }
-
-    private fun setDestinationSpinner(answerArray: Array<Double>) {
-        binding.spDest.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-
-            }
-
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                answer = answerArray[p2]
             }
         }
     }
