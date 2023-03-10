@@ -9,6 +9,9 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:textSize="22sp"
+        android:textColor="@color/purple_700"
+        android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -71,6 +74,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:textColor="@color/purple_700"
+        android:textColorHint="@color/purple_700"
+        android:drawableTint="@color/purple_700"
+        android:backgroundTint="@color/purple_700"
         android:hint="@string/enter_amount"
         android:inputType="numberDecimal" />
 
